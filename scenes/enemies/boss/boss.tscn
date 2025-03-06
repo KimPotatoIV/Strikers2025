@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://cu55t2ljbhs7o"]
+
+[ext_resource type="Texture2D" uid="uid://brsm5hqjlcipo" path="res://scenes/enemies/boss/enemy-big.png" id="1_1r274"]
+[ext_resource type="Script" uid="uid://br0dpxxrtvpqt" path="res://scenes/enemies/boss/boss.gd" id="1_3wslb"]
+[ext_resource type="Texture2D" uid="uid://cgb7n22r5njum" path="res://scenes/enemies/boss/explosion.png" id="2_hfju7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eig4w"]
+atlas = ExtResource("2_hfju7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7gi3"]
+atlas = ExtResource("2_hfju7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adb2o"]
+atlas = ExtResource("2_hfju7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnkcg"]
+atlas = ExtResource("2_hfju7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iagua"]
+atlas = ExtResource("2_hfju7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii6t8"]
+atlas = ExtResource("1_1r274")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7jif"]
+atlas = ExtResource("1_1r274")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5w31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eig4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7gi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adb2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnkcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iagua")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii6t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7jif")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryccu"]
+radius = 48.0
+height = 156.0
+
+[node name="Boss" type="Area2D"]
+script = ExtResource("1_3wslb")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_b5w31")
+animation = &"explosion"
+autoplay = "idle"
+frame_progress = 0.976752
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 42)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ryccu")
+
+[node name="FireTimer" type="Timer" parent="."]
+autostart = true

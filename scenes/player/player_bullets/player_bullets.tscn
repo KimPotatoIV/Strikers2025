@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drwtiufepub4v"]
+
+[ext_resource type="Script" uid="uid://cwfgtjo41lhda" path="res://scenes/player/player_bullets/player_bullets.gd" id="1_nie54"]
+
+[node name="PlayerBullets" type="Node2D"]
+script = ExtResource("1_nie54")

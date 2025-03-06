@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://3lpkkjrwt4rm"]
+
+[ext_resource type="PackedScene" uid="uid://yflhqxcrl8c0" path="res://scenes/player/player.tscn" id="1_a8mxp"]
+[ext_resource type="PackedScene" uid="uid://c40nxf10621mj" path="res://scenes/background/background.tscn" id="1_kplg5"]
+[ext_resource type="PackedScene" uid="uid://drwtiufepub4v" path="res://scenes/player/player_bullets/player_bullets.tscn" id="3_t2k48"]
+[ext_resource type="PackedScene" uid="uid://of4a2k0wa503" path="res://scenes/spawner/spawner.tscn" id="4_0hre0"]
+[ext_resource type="PackedScene" uid="uid://dgaedk1542umw" path="res://scenes/enemies/enemies_bullets/enemies_bullets.tscn" id="5_6xgrn"]
+[ext_resource type="PackedScene" uid="uid://lam22kvbek0s" path="res://scenes/hud/hud.tscn" id="6_1uneg"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_kplg5")]
+
+[node name="Player" parent="." instance=ExtResource("1_a8mxp")]
+position = Vector2(180, 580)
+
+[node name="PlayerBullets" parent="." instance=ExtResource("3_t2k48")]
+
+[node name="Spawner" parent="." instance=ExtResource("4_0hre0")]
+
+[node name="EnemiesBullets" parent="." instance=ExtResource("5_6xgrn")]
+
+[node name="HUD" parent="." instance=ExtResource("6_1uneg")]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://pho8jrl8asps"]
+
+[ext_resource type="Texture2D" uid="uid://chs1jpilm7gsc" path="res://scenes/enemies/enemy/enemy-medium.png" id="1_4q3tj"]
+[ext_resource type="Script" uid="uid://crvjlxupdngkv" path="res://scenes/enemies/enemy/enemy.gd" id="1_icacw"]
+[ext_resource type="Texture2D" uid="uid://bfd7paha7f7hg" path="res://scenes/enemies/enemy/explosion.png" id="2_yts6v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8nyo"]
+atlas = ExtResource("2_yts6v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cufr"]
+atlas = ExtResource("2_yts6v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo4wl"]
+atlas = ExtResource("2_yts6v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4w6r"]
+atlas = ExtResource("2_yts6v")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dsfy"]
+atlas = ExtResource("2_yts6v")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgr61"]
+atlas = ExtResource("1_4q3tj")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yaij"]
+atlas = ExtResource("1_4q3tj")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pn7vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8nyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cufr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo4wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4w6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dsfy")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgr61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yaij")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njrne"]
+radius = 6.0
+height = 32.0
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_icacw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pn7vc")
+animation = &"explosion"
+autoplay = "idle"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_njrne")
+
+[node name="Timer" type="Timer" parent="."]

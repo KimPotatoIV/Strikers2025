@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu55t2ljbhs7o"]
+
+[ext_resource type="Texture2D" uid="uid://brsm5hqjlcipo" path="res://scenes/enemies/boss/enemy-big.png" id="1_1r274"]
+[ext_resource type="Script" path="res://scenes/enemies/boss/boss.gd" id="1_3wslb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii6t8"]
+atlas = ExtResource("1_1r274")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7jif"]
+atlas = ExtResource("1_1r274")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5w31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii6t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7jif")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryccu"]
+radius = 48.0
+height = 156.0
+
+[node name="Boss" type="Area2D"]
+script = ExtResource("1_3wslb")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_b5w31")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.85767
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 42)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ryccu")

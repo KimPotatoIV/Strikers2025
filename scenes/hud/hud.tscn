@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://lam22kvbek0s"]
+
+[ext_resource type="FontFile" uid="uid://bqw10rw5b5krh" path="res://fonts/NeoDunggeunmoPro-Regular.ttf" id="1_43ul4"]
+[ext_resource type="Script" uid="uid://bepayumpoj8rr" path="res://scenes/hud/hud.gd" id="1_ckbjn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ay8ya"]
+font = ExtResource("1_43ul4")
+font_size = 40
+font_color = Color(0.882353, 0.882353, 0.882353, 1)
+shadow_size = 8
+shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cgeww"]
+font = ExtResource("1_43ul4")
+font_size = 56
+font_color = Color(0.882353, 0.882353, 0.882353, 1)
+shadow_size = 8
+shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="Animation" id="Animation_vhnhw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7h12l"]
+resource_name = "warning"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.466667, 0.9, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.607843), Color(1, 0, 0, 0), Color(1, 0, 0, 0.607843), Color(1, 0, 0, 0), Color(1, 0, 0, 0.607843), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4su08"]
+_data = {
+&"RESET": SubResource("Animation_vhnhw"),
+&"warning": SubResource("Animation_7h12l")
+}
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ckbjn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.5
+offset_top = -63.0
+offset_right = 143.5
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER
+Press SPACE
+to RESTART GAME"
+label_settings = SubResource("LabelSettings_ay8ya")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameClearLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -11.5
+offset_right = 49.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME CLEAR"
+label_settings = SubResource("LabelSettings_cgeww")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4su08")
+}

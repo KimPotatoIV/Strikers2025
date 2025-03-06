@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgaedk1542umw"]
+
+[ext_resource type="Script" uid="uid://tmy6u13sqjwb" path="res://scenes/enemies/enemies_bullets/enemies_bullets.gd" id="1_otmip"]
+
+[node name="EnemiesBullets" type="Node2D"]
+script = ExtResource("1_otmip")
